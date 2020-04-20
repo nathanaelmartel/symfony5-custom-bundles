@@ -1,2 +1,2 @@
 maker:
-    root_namespace: 'App\SimplementWeb\SettingsBundle'
+    root_namespace: 'App\SimplementWeb\HistoryBundle'
