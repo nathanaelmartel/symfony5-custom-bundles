@@ -21,7 +21,7 @@
             <div class="card-body">
                 <div class="media">
                     <div class="mr-3">
-                        <a href="#"><img src="assets/images/image.png" width="38" height="38" class="rounded-circle" alt=""></a>
+                        <a href="#"><img src="/assets/images/image.png" width="38" height="38" class="rounded-circle" alt=""></a>
                     </div>
 
                     <div class="media-body">
@@ -41,7 +41,7 @@
             <ul class="nav nav-sidebar" data-nav-type="accordion">
 
                 <li class="nav-item">
-                    <a href="../full/index.html" class="nav-link">
+                    <a href="{{ path('home') }}" class="nav-link">
                         <i class="fad fa-home"></i>
                         <span>Dashboard</span>
                     </a>
@@ -68,7 +68,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item nav-item-submenu nav-item-expanded nav-item-open">
+                <li class="nav-item nav-item-submenu {% if 'setting_' in app.request.attributes.get('_route') %}nav-item-expanded nav-item-open{% endif %}">
                     <a href="#" class="nav-link">
                         <i class="fad fa-cogs"></i>
                         <span>Settings</span></a>
@@ -76,6 +76,12 @@
                     <ul class="nav nav-group-sub" data-submenu-title="Starter kit">
                         <li class="nav-item">
                             <a href="{{ path('setting_mail') }}" class="nav-link {% if 'setting_mail' in app.request.attributes.get('_route') %}active{% endif %}">Mail</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ path('setting_map') }}" class="nav-link {% if 'setting_map' in app.request.attributes.get('_route') %}active{% endif %}">Open Street Map / MapBox</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ path('setting_dropbox') }}" class="nav-link {% if 'setting_dropbox' in app.request.attributes.get('_route') %}active{% endif %}">Dropbox</a>
                         </li>
                         <li class="nav-item nav-item-submenu">
                             <a href="#" class="nav-link">2 sidebars</a>

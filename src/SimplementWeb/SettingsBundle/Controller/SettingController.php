@@ -5,7 +5,13 @@ namespace App\SimplementWeb\SettingsBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use App\SimplementWeb\SettingsBundle\Entity\Setting;
 
+/**
+ * Setting controller.
+ *
+ * @Route("admin/setting")
+ */
 class SettingController extends AbstractController
 {
     /**
@@ -155,7 +161,7 @@ class SettingController extends AbstractController
     }
 
     /**
-     * @Route("/setting/mail", name="setting_mail")
+     * @Route("/mail", name="setting_mail")
      */
     public function mailLayout(Request $request)
     {
@@ -185,7 +191,7 @@ class SettingController extends AbstractController
 
             $this->addFlash('success', 'Paramètres enregistrés');
 
-            return $this->redirectToRoute('setting_mail_layout');
+            return $this->redirectToRoute('setting_mail');
         }
 
         return $this->render('@SimplementWebSettings/setting/index.html.twig', array(
@@ -195,36 +201,7 @@ class SettingController extends AbstractController
     }
 
     /**
-     * @Route("/setting/api/client", name="setting_api_client")
-     */
-    public function api(Request $request)
-    {
-        $settings = array(
-            'api_client_key' => array(
-                'label' => 'Clé API espace client',
-                'type' => 'text',
-            ),
-        );
-
-        $settings = $this->getSettings($settings);
-
-        if ($request->isMethod('POST')) {
-            $settings = $this->saveSettings($settings, $request);
-
-            $this->addFlash('success', 'Paramètres enregistrés');
-
-            return $this->redirectToRoute('setting_api_client');
-        }
-
-        return $this->render('@SimplementWebSettings/setting/index.html.twig', array(
-            'settings' => $settings,
-            'setting_title' => 'Espace client',
-            'breadcrumb' => 'API',
-        ));
-    }
-
-    /**
-     * @Route("/setting/map", name="admin_setting_map")
+     * @Route("/map", name="setting_map")
      */
     public function map(Request $request)
     {
@@ -255,12 +232,48 @@ class SettingController extends AbstractController
 
             $this->addFlash('success', 'Paramètres sauvegardés');
 
-            return $this->redirectToRoute('admin_setting_map');
+            return $this->redirectToRoute('setting_map');
         }
 
         return $this->render('@SimplementWebSettings/setting/index.html.twig', array(
             'settings' => $settings,
-            'setting_title' => 'Paramètres Open Street Map / MapBox',
+            'setting_title' => 'Open Street Map / MapBox',
+        ));
+    }
+
+    /**
+     * @Route("/dropbox", name="setting_dropbox")
+     */
+    public function dropboxAction(Request $request)
+    {
+        $settings = array(
+            'dropbox_client_id' => array(
+                'label' => 'Client id',
+                'type' => 'text',
+            ),
+            'dropbox_client_secret' => array(
+                'label' => 'Client secret',
+                'type' => 'text',
+            ),
+            'dropbox_access_token' => array(
+                'label' => 'Access token',
+                'type' => 'text',
+            ),
+        );
+
+        $settings = $this->getSettings($settings);
+
+        if ($request->isMethod('POST')) {
+            $settings = $this->saveSettings($settings, $request);
+
+            $this->addFlash('success', 'Paramètres sauvegardés');
+
+            return $this->redirectToRoute('setting_dropbox');
+        }
+
+        return $this->render('@SimplementWebSettings/setting/index.html.twig', array(
+            'settings' => $settings,
+            'setting_title' => 'Dropbox',
         ));
     }
 }
