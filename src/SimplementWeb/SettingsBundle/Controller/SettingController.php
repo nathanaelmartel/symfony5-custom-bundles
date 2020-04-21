@@ -25,7 +25,7 @@ class SettingController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
 
-        $setting = $em->getRepository('SimplementWebSettingsBundle:Setting')->findOneBy(array('name' => $key));
+        $setting = $em->getRepository('Settings:Setting')->findOneBy(array('name' => $key));
 
         if ($setting) {
             return $setting->getValue();
@@ -40,7 +40,7 @@ class SettingController extends AbstractController
 
         $settings = [];
 
-        $results = $em->getRepository('SimplementWebSettingsBundle:Setting')->createQueryBuilder('s')
+        $results = $em->getRepository('Settings:Setting')->createQueryBuilder('s')
             ->andWhere('s.name LIKE :name')
             ->setParameter('name', $key.'%')
             ->getQuery()
@@ -64,7 +64,7 @@ class SettingController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
 
-        $setting = $em->getRepository('SimplementWebSettingsBundle:Setting')->findOneBy(array('name' => $key));
+        $setting = $em->getRepository('Settings:Setting')->findOneBy(array('name' => $key));
 
         if ($setting) {
             $setting->setValue($value);
@@ -194,7 +194,7 @@ class SettingController extends AbstractController
             return $this->redirectToRoute('setting_mail');
         }
 
-        return $this->render('@SimplementWebSettings/setting/index.html.twig', array(
+        return $this->render('@SimplementWebSettings/index.html.twig', array(
             'settings' => $settings,
             'setting_title' => 'Email',
         ));
@@ -235,7 +235,7 @@ class SettingController extends AbstractController
             return $this->redirectToRoute('setting_map');
         }
 
-        return $this->render('@SimplementWebSettings/setting/index.html.twig', array(
+        return $this->render('@SimplementWebSettings/index.html.twig', array(
             'settings' => $settings,
             'setting_title' => 'Open Street Map / MapBox',
         ));
@@ -271,7 +271,7 @@ class SettingController extends AbstractController
             return $this->redirectToRoute('setting_dropbox');
         }
 
-        return $this->render('@SimplementWebSettings/setting/index.html.twig', array(
+        return $this->render('@SimplementWebSettings/index.html.twig', array(
             'settings' => $settings,
             'setting_title' => 'Dropbox',
         ));

@@ -68,6 +68,7 @@
                         </li>
                     </ul>
                 </li>
+
                 <li class="nav-item nav-item-submenu {% if 'setting_' in app.request.attributes.get('_route') %}nav-item-expanded nav-item-open{% endif %}">
                     <a href="#" class="nav-link">
                         <i class="fad fa-cogs"></i>
@@ -96,14 +97,15 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item nav-item-submenu">
+
+                <li class="nav-item nav-item-submenu {% if 'tools_' in app.request.attributes.get('_route') %}nav-item-expanded nav-item-open{% endif %}">
                     <a href="#" class="nav-link">
                         <i class="fad fa-tools"></i>
                         <span>Tools</span></a>
 
                     <ul class="nav nav-group-sub" data-submenu-title="Starter kit">
                         <li class="nav-item">
-                            <a href="../seed/layout_nav_horizontal.html" class="nav-link">Horizontal navigation</a>
+                            <a href="{{ path('tools_history_index') }}" class="nav-link {% if 'tools_history_index' in app.request.attributes.get('_route') %}active{% endif %}">Historique</a>
                         </li>
                         <li class="nav-item nav-item-submenu">
                             <a href="#" class="nav-link">2 sidebars</a>

@@ -2,3 +2,8 @@ simplementweb_settings:
     # loads routes from the PHP annotations of the controllers found in that directory
     resource: '../src/SimplementWeb/SettingsBundle/Controller'
     type:     annotation
+
+simplementweb_history:
+    # loads routes from the PHP annotations of the controllers found in that directory
+    resource: '../src/SimplementWeb/HistoryBundle/Controller'
+    type:     annotation

@@ -10,6 +10,18 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
         auto_mapping: true
         mappings:
+            SimplementWebHistoryBundle:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/SimplementWeb/HistoryBundle/Entity'
+                prefix: 'App\SimplementWeb\HistoryBundle\Entity'
+                alias: History
+            SimplementWebSettingsBundle:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/SimplementWeb/SettingsBundle/Entity'
+                prefix: 'App\SimplementWeb\SettingsBundle\Entity'
+                alias: Settings
             App:
                 is_bundle: false
                 type: annotation

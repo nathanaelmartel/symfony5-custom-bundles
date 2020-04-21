@@ -15,7 +15,7 @@ class Setting
 
     public function get(string $key, $default_value = null)
     {
-        $setting = $this->entityManager->getRepository('SimplementWebSettingsBundle:Setting')->findOneBy(array('name' => $key));
+        $setting = $this->entityManager->getRepository('Settings:Setting')->findOneBy(array('name' => $key));
 
         if ($setting) {
             return $setting->getValue();
@@ -28,7 +28,7 @@ class Setting
     {
         $settings = [];
 
-        $results = $this->entityManager->getRepository('SimplementWebSettingsBundle:Setting')->createQueryBuilder('s')
+        $results = $this->entityManager->getRepository('Settings:Setting')->createQueryBuilder('s')
             ->andWhere('s.name LIKE :name')
             ->setParameter('name', $key.'%')
             ->getQuery()
@@ -44,7 +44,7 @@ class Setting
 
     public function set(string $key, $value = null)
     {
-        $setting = $this->entityManager->getRepository('SimplementWebSettingsBundle:Setting')->findOneBy(array('name' => $key));
+        $setting = $this->entityManager->getRepository('Settings:Setting')->findOneBy(array('name' => $key));
 
         if ($setting) {
             $setting->setValue($value);
