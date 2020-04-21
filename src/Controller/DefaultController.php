@@ -14,11 +14,12 @@ class DefaultController extends AbstractController
      */
     public function index(Setting $setting, History $history)
     {
-        $setting->get('key');
+        /*$setting->get('key');
         $setting->set('key', 'value');
-        $setting->group('key');
+        $setting->group('key');*/
 
-        $history->add('Nom', null, 'information', ['foo' => 'bar']);
+        //$h = $history->add('Test', null, 'information', ['foo' => 'bar']);
+        //$history->add('Beta', $h, 'information', ['foo' => 'bar']);
 
         return $this->render('default/index.html.twig', [
             'controller_name' => 'DefaultController',
